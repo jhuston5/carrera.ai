@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Strava Activities</title>
+</head>
+<body>
+  <h1>Strava Activities</h1>
+  <ul id="activities-list"></ul>
+
+  <script>
+    // Fetch activities from the backend API
+    fetch('http://localhost:3000/activities/49645292')
+      .then(response => response.json())
+      .then(data => {
+        const activitiesList = document.getElementById('activities-list');
+        data.forEach(activity => {
+          const listItem = document.createElement('li');
+          listItem.textContent = activity.name;
+          activitiesList.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
